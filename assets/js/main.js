@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavigationMenu();
     initRevealAnimations();
     initGalleryMarquee();
+    initFooterScrollAnimation();
 
     // Light-theme page: frosted glass nav on scroll (hamburger handles the rest)
     if (document.body.classList.contains("light-theme")) {
@@ -511,4 +512,53 @@ function initGalleryMarquee() {
             }
         }
     );
+}
+
+/* -----------------------------------------
+   9. Footer Scroll Animation (Curved reveal)
+----------------------------------------- */
+function initFooterScrollAnimation() {
+    const footerReveal = document.querySelector(".footer-bg-reveal");
+    const footer = document.querySelector(".footer-section");
+    const footerContent = document.querySelector(".footer-section .section-container");
+    if (!footerReveal || !footer || !footerContent) return;
+
+    // Initially hide the content so it only appears when the background reveals
+    gsap.set(footerContent, { opacity: 0, y: 50 });
+
+    // Timeline that links overlay height, overlay curve, and element colors to scroll position
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: footer,
+            start: "top 75%", // starts as the footer enters the viewport
+            once: true        // play once and never repeat or reverse
+        }
+    });
+
+    // Circle rises and flattens
+    tl.to(footerReveal, {
+        bottom: "-5vw",
+        borderRadius: "0%",
+        ease: "power2.inOut",
+        duration: 1.5
+    }, 0); // ← all start at 0 = perfectly in sync
+
+    // Text colours flip EXACTLY as the circle rises
+    tl.to(footer, {
+        "--footer-text-color": "#ffffff",
+        "--footer-border-color": "rgba(255, 255, 255, 0.1)",
+        "--footer-link-border": "rgba(255, 255, 255, 0.15)",
+        "--footer-label-color": "#aeafb2",
+        "--footer-hover-bg": "rgba(255, 255, 255, 0.05)",
+        ease: "none",
+        duration: 1.5  // ← same as circle = text changes as circle covers it
+    }, 0);
+
+    // Content fades in in sync with the circle
+    tl.to(footerContent, {
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+        duration: 1.5
+    }, 0.4); // ← same start as circle = fully in sync
 }

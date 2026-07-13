@@ -20,7 +20,8 @@
 
 /* Footer heading reveal */
 .footer-section h2 .reveal-line .line-inner {
-    color: var(--text-light);
+    color: var(--footer-text-color);
+    transition: color 0.3s ease;
 }
 
 :root {
@@ -696,19 +697,46 @@ body.light-theme .nav-container {
 
 /* Footer Section */
 .footer-section {
-    background-color: var(--color-dark-bg);
-    color: var(--text-light);
+    background-color: var(--color-light-bg);
+    color: var(--footer-text-color);
     padding: 80px 0 40px;
     position: relative;
     z-index: 10;
+    overflow: hidden;
+
+    /* CSS custom properties for scroll animation */
+    --footer-text-color: var(--text-dark);
+    --footer-border-color: rgba(28, 29, 32, 0.1);
+    --footer-link-border: rgba(28, 29, 32, 0.15);
+    --footer-label-color: var(--text-muted-dark);
+    --footer-hover-bg: rgba(28, 29, 32, 0.05);
+}
+
+.footer-bg-reveal {
+    position: absolute;
+    bottom: -150vw;
+    left: 50%;
+    width: 160vw;
+    height: 160vw;
+    background-color: var(--color-dark-bg);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.footer-section .section-container {
+    position: relative;
+    z-index: 2;
 }
 
 .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--footer-border-color);
     padding-bottom: 40px;
+    transition: border-color 0.3s ease;
 }
 
 .footer-title-wrap {
@@ -787,7 +815,8 @@ body.light-theme .nav-container {
 
 .footer-middle {
     padding: 40px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--footer-border-color);
+    transition: border-color 0.3s ease;
 }
 
 .contact-details-grid {
@@ -797,19 +826,19 @@ body.light-theme .nav-container {
 
 .contact-link {
     font-size: 1.25vw;
-    color: var(--text-light);
+    color: var(--footer-text-color);
     text-decoration: none;
     font-weight: 400;
     display: inline-block;
     padding: 15px 30px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--footer-link-border);
     border-radius: 50px;
-    transition: border-color 0.3s, background-color 0.3s;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .contact-link:hover {
-    border-color: var(--text-light);
-    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--footer-text-color);
+    background-color: var(--footer-hover-bg);
 }
 
 .footer-bottom {
@@ -828,14 +857,17 @@ body.light-theme .nav-container {
 
 .credit-label {
     font-size: 11px;
-    color: var(--text-muted-light);
+    color: var(--footer-label-color);
     letter-spacing: 1px;
     text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
 .credit-value {
     font-size: 14px;
     font-weight: 400;
+    color: var(--footer-text-color);
+    transition: color 0.3s ease;
 }
 
 .social-links-grid {
@@ -845,9 +877,10 @@ body.light-theme .nav-container {
 
 .social-link {
     text-decoration: none;
-    color: var(--text-light);
+    color: var(--footer-text-color);
     font-size: 14px;
     font-weight: 400;
+    transition: color 0.3s ease;
 }
 
 .social-link:hover {
