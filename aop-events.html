@@ -14,6 +14,238 @@
         rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Page-specific Case Study Redesign Styles */
+        body.light-theme {
+
+            color: #1c1d20;
+            font-family: 'Instrument Sans', var(--font-primary), sans-serif;
+        }
+
+        .case-study-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: 140px;
+            box-sizing: border-box;
+        }
+
+        .case-study-header-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 50px;
+            box-sizing: border-box;
+        }
+
+        .case-study-title {
+            font-size: clamp(4rem, 13vw, 11rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            margin: 40px 0 90px 0;
+            text-transform: uppercase;
+            color: #1c1d20;
+        }
+
+        .case-study-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .meta-col {
+            border-top: 1px solid rgba(28, 29, 32, 0.15);
+            padding-top: 24px;
+        }
+
+        .meta-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #999999;
+            margin-bottom: 16px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1c1d20;
+            line-height: 1.4;
+        }
+
+        /* Interactive Floating Live Site Button & Laptop Cover */
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            margin-top: 40px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            padding: 160px;
+            box-sizing: border-box;
+            object-fit: contain;
+            display: block;
+        }
+
+
+
+        /* Laptop Mockup Wrapper */
+        .laptop-container {
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 160px;
+        }
+
+        /* Laptop Screen Display */
+        .laptop-screen {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background-color: #0b0c0e;
+            border-radius: 20px 20px 0 0;
+            padding: 12px 12px 0 12px;
+            box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .laptop-camera {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: #1a1c1e;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        .laptop-screen-content {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 8px 8px 0 0;
+            display: block;
+        }
+
+        /* Laptop Bottom Base Hinge */
+        .laptop-base {
+            width: 114%;
+            height: 18px;
+            background: linear-gradient(180deg, #a6b0b5 0%, #899398 40%, #6e777c 100%);
+            border-radius: 2px 2px 14px 14px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+            margin-top: -1px;
+        }
+
+        .laptop-base-notch {
+            width: 110px;
+            height: 5px;
+            background-color: #52585c;
+            border-radius: 0 0 5px 5px;
+            margin: 0 auto;
+        }
+
+        .live-site-badge {
+            position: absolute;
+            top: -45px;
+            right: 5%;
+            width: 140px;
+            height: 140px;
+            background-color: #455ce9;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(69, 92, 233, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .live-site-badge:hover {
+            transform: scale(1.08);
+            background-color: #3347c8;
+        }
+
+        /* Nav custom overrides for dot active state */
+        .nav-logo .logo-circle {
+            display: none !important;
+        }
+
+        .nav-link.active::after {
+            display: none !important;
+        }
+
+        .nav-link.active {
+            position: relative;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: #1c1d20;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 900px) {
+            .case-study-meta-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .live-site-badge {
+                right: 5%;
+                width: 110px;
+                height: 110px;
+                font-size: 14px;
+                top: -55px;
+            }
+        }
+
+        .laptop-screen-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Use 'contain' if you don't want the video cropped */
+            display: block;
+        }
+
+        .show-about video {
+            width: 100%;
+            height: auto;
+            padding: 230px;
+            box-sizing: border-box;
+            object-fit: contain;
+            display: block;
+        }
+    </style>
 </head>
 
 <body class="light-theme">
@@ -22,13 +254,12 @@
     <header class="nav-container">
         <div class="nav-logo magnetic" data-strength="15">
             <a href="index.html" class="nav-logo-link">
-                <span class="logo-circle"></span>
                 <span class="logo-text">© Code by Bimal</span>
             </a>
         </div>
         <nav class="nav-links">
             <div class="nav-link-wrapper magnetic" data-strength="20">
-                <a href="index.html#work" class="nav-link active">Work</a>
+                <a href="index.html#work" class="nav-link">Work</a>
             </div>
             <div class="nav-link-wrapper magnetic" data-strength="20">
                 <a href="about.html" class="nav-link">About</a>
@@ -47,42 +278,68 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Content Case Study -->
     <main class="main-content">
-        <!-- Project Hero -->
-        <section class="about-page-hero" id="project-hero">
-            <div class="section-container">
-                <h1 class="about-hero-title" style="margin-bottom: 2rem;">
-                    AOP Events
-                </h1>
+        <section class="case-study-hero">
+            <div class="case-study-header-content">
+                <h1 class="case-study-title">AOP EVENTS</h1>
 
-                <div class="about-content-grid" style="margin-top: 4rem;">
-                    <div class="about-text-col" style="grid-column: span 2;">
-                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Design & Development</h2>
-                        <p style="font-size: 1.25rem; line-height: 1.6; opacity: 0.8; margin-bottom: 2rem;">
-                            AOP Events is a premium event management platform built from the ground up to provide
-                            seamless user experiences. The project involved complete design and development, focusing on
-                            high performance, modern aesthetics, and intuitive navigation. The platform enables users to
-                            discover, book, and manage events effortlessly.
-                        </p>
-                        <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
-                            <div>
-                                <span
-                                    style="display: block; opacity: 0.5; font-size: 0.875rem; margin-bottom: 0.5rem;">YEAR</span>
-                                <strong>2026</strong>
-                            </div>
-                            <div>
-                                <span
-                                    style="display: block; opacity: 0.5; font-size: 0.875rem; margin-bottom: 0.5rem;">SERVICES</span>
-                                <strong>Design & Development</strong>
-                            </div>
-                        </div>
+                <div class="case-study-meta-grid">
+                    <div class="meta-col">
+                        <span class="meta-label">Role / Services</span>
+                        <div class="meta-value">Interaction & Development</div>
                     </div>
-                    <div class="about-image-col">
-                        <img src="assets/images/Screenshot 2026-07-05 005424.png" alt="AOP Events Preview"
-                            style="width: 100%; border-radius: 12px; object-fit: cover;">
+                    <div class="meta-col">
+                        <span class="meta-label">Credits</span>
+                        <div class="meta-value">Design: Bimal Thapa</div>
+                    </div>
+                    <div class="meta-col">
+                        <span class="meta-label">Location & Year</span>
+                        <div class="meta-value">India © 2026</div>
                     </div>
                 </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <a href="#" class="live-site-badge magnetic" data-strength="30">
+                    Live site ↗
+                </a>
+
+                <img src="assets/images/Screenshot 2026-07-05 005424.png" alt="AOP Events Preview">
+            </div>
+        </section>
+
+
+
+        <section style="background-color: rgb(192, 202, 201);">
+            <div class="laptop-container">
+                <div class="laptop-screen">
+                    <div class="laptop-camera"></div>
+
+                    <div class="laptop-screen-content">
+                        <video autoplay loop muted playsinline>
+                            <source src="assets/videos/Timeline1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="laptop-base">
+                    <div class="laptop-base-notch"></div>
+                </div>
+            </div>
+
+
+            <div class="show-about">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Timeline2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="exhibitions">
+                <img src="assets/images/Exhibitions.png" alt=""
+                    style="width: 100%; height: auto; padding-bottom: 100px;">
             </div>
         </section>
 
