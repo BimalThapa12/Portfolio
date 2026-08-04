@@ -697,32 +697,23 @@ body.light-theme .nav-container {
 
 /* Footer Section */
 .footer-section {
-    background-color: var(--color-light-bg);
-    color: var(--footer-text-color);
-    padding: 80px 0 40px;
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    padding: 100px 0 40px;
     position: relative;
     z-index: 10;
     overflow: hidden;
+    will-change: clip-path;
 
-    /* CSS custom properties for scroll animation */
-    --footer-text-color: var(--text-dark);
-    --footer-border-color: rgba(28, 29, 32, 0.1);
-    --footer-link-border: rgba(28, 29, 32, 0.15);
-    --footer-label-color: var(--text-muted-dark);
-    --footer-hover-bg: rgba(28, 29, 32, 0.05);
+    --footer-text-color: #ffffff;
+    --footer-border-color: rgba(255, 255, 255, 0.1);
+    --footer-link-border: rgba(255, 255, 255, 0.15);
+    --footer-label-color: #aeafb2;
+    --footer-hover-bg: rgba(255, 255, 255, 0.05);
 }
 
 .footer-bg-reveal {
-    position: absolute;
-    bottom: -150vw;
-    left: 50%;
-    width: 160vw;
-    height: 160vw;
-    background-color: var(--color-dark-bg);
-    border-radius: 50%;
-    z-index: 1;
-    pointer-events: none;
-    transform: translateX(-50%);
+    display: none;
 }
 
 .footer-section .section-container {

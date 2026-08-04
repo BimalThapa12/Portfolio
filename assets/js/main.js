@@ -518,47 +518,24 @@ function initGalleryMarquee() {
    9. Footer Scroll Animation (Curved reveal)
 ----------------------------------------- */
 function initFooterScrollAnimation() {
-    const footerReveal = document.querySelector(".footer-bg-reveal");
     const footer = document.querySelector(".footer-section");
     const footerContent = document.querySelector(".footer-section .section-container");
-    if (!footerReveal || !footer || !footerContent) return;
+    if (!footer || !footerContent) return;
 
-    // Initially hide the content so it only appears when the background reveals
-    gsap.set(footerContent, { opacity: 0, y: 50 });
+    gsap.set(footerContent, { opacity: 1, y: 0 });
 
-    // Timeline that links overlay height, overlay curve, and element colors to scroll position
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: footer,
-            start: "top 75%", // starts as the footer enters the viewport
-            once: true        // play once and never repeat or reverse
+            start: "top 95%",
+            end: "top 25%",
+            scrub: 1
         }
     });
 
-    // Circle rises and flattens
-    tl.to(footerReveal, {
-        bottom: "-5vw",
-        borderRadius: "0%",
-        ease: "power2.inOut",
-        duration: 1.5
-    }, 0); // ← all start at 0 = perfectly in sync
-
-    // Text colours flip EXACTLY as the circle rises
-    tl.to(footer, {
-        "--footer-text-color": "#ffffff",
-        "--footer-border-color": "rgba(255, 255, 255, 0.1)",
-        "--footer-link-border": "rgba(255, 255, 255, 0.15)",
-        "--footer-label-color": "#aeafb2",
-        "--footer-hover-bg": "rgba(255, 255, 255, 0.05)",
-        ease: "none",
-        duration: 1.5  // ← same as circle = text changes as circle covers it
-    }, 0);
-
-    // Content fades in in sync with the circle
-    tl.to(footerContent, {
-        opacity: 1,
-        y: 0,
-        ease: "power2.out",
-        duration: 1.5
-    }, 0.4); // ← same start as circle = fully in sync
+    // Downward concave curve at top of dark footer flattens as you scroll in
+    tl.fromTo(footer,
+        { clipPath: "ellipse(120% 100% at 50% -20%)" },
+        { clipPath: "ellipse(300% 300% at 50% 0%)", ease: "none" }
+    );
 }
